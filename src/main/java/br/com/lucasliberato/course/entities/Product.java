@@ -13,8 +13,8 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_category")
-public class Category implements Serializable {
+@Table(name = "tb_product")
+public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,15 +22,22 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Transient
-    private Set<Product> products = new HashSet<>();
+    private String description;
+    private Double price;
+    private String imgUrl;
 
-    public Category() {
+    @Transient
+    private Set<Category> categories = new HashSet<>();
+
+    public Product() {
     }
 
-    public Category(Long id, String name) {
+    public Product(Long id, String name, String description, Double price, String imgUrl){
         this.id = id;
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
     }
 
     public Long getId() {
@@ -49,12 +56,36 @@ public class Category implements Serializable {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return Objects.equals(id, category.id);
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
     }
 
     @Override
