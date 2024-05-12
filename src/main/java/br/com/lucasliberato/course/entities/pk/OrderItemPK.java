@@ -19,7 +19,7 @@ public class OrderItemPK implements Serializable {
     private Order order;
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product procuct;
+    private Product product;
 
     public Order getOrder() {
         return order;
@@ -29,12 +29,12 @@ public class OrderItemPK implements Serializable {
         this.order = order;
     }
 
-    public Product getProcuct() {
-        return procuct;
+    public Product getProduct() {
+        return product;
     }
 
     public void setProcuct(Product procuct) {
-        this.procuct = procuct;
+        this.product = procuct;
     }
 
     @Override
@@ -42,11 +42,11 @@ public class OrderItemPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItemPK that = (OrderItemPK) o;
-        return Objects.equals(order, that.order) && Objects.equals(procuct, that.procuct);
+        return Objects.equals(order, that.order) && Objects.equals(product, that.product);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(order, procuct);
+        return Objects.hash(order, product);
     }
 }
